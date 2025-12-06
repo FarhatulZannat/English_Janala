@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Janala</title>
+
+
+    <!-- daisy ui add -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+<body>
+    <header>
+        <nav class=" bg-[#C6BDBD50] flex justify-between border-b-2 py-6 border-[#17171720] px-10">
+            <div class="flex  ">
+                <h1 class="font-semibold text-xl">English</h1>
+                <img class="w-[30px] " src="./assets/logo.png" alt="">
+                <h1 class="font-regular pt-1">জানালা </h1>
+            </div>
+
+            <div>
+                <button id="faq" class="btn btn-outline btn-primary" ><img src="assets/fa-circle-question.png" alt="" srcset="">FAQ</button>
+                <button onclick="loadAllLevels()" class="btn btn-outline btn-primary"><img src="assets/fa-book-open.png" alt="" srcset="">Learn</button>
+                <button class="btn btn-outline btn-primary"><img  src="assets/fa-arrow-right-from-bracket.png" alt="" srcset="">Logout</button>
+                
+            </div>
+        </nav>
+
+        <section class="flex">
+            <div class="pl-18">
+                <h1 class="font-bold text-4xl pt-38"><span class="text-sky-500">English</span> is Easy !!</h1>
+            <p class="font-bold py-5">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br> আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+            <input type="text" placeholder="Enter Your Name" class="input" /><br><br>
+
+            <label class="input validator ">
+
+  <input
+    type="password"
+    required
+    placeholder="Enter Login Code (123456)"
+    minlength="6"
+    pattern="{6,}"
+    title="Must be  6 characters, "
+  />
+</label>
+<p class="validator-hint hidden">
+  Must be more than 8 characters, including
+  <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
+</p>
+<br> <br><button class="btn btn-primary">Get Started</button>
+            </div>
+
+            <div>
+                <img class="w-[800px] pr-20" src="assets/hero-student.png" alt="">
+            </div>
+        </section>
+    </header>
+
+
+    <!-- main part -->
+<section>
+     <h1 class="text-center py-8 font-bold text-4xl pt-38"><span class="text-sky-500">Lets</span> Learn Vocabularies </h1>
+    <div id="button-container" class="flex justify-center gap-6 " >
+        <button>
+            <button class="btn btn-outline btn-primary"><img  src="assets/fa-book-open.png" alt="" srcset="">Lesson -${btn.level_no}</button>
+            <button class="btn btn-outline btn-primary"><img  src="assets/fa-book-open.png" alt="" srcset="">Lesson -${btn.level_no}</button>
+            <button class="btn btn-outline btn-primary"><img  src="assets/fa-book-open.png" alt="" srcset="">Lesson -${btn.level_no}</button>
+        </button>
+    </div>
+
+     <div class="bg-[#F8F8F8] py-20 text-center mx-18 my-8">
+            <h6 class="font-thin">আপনি এখনো কোন Lesson Select করেন নি</h6>
+            <h1 class="font-bold">একটি Lesson Select করুন।</h1>
+        </div>
+</section>
+
+
+   <section class="px-18 ">
+    <h1 class="text-center py-8 font-bold text-4xl pt-38"><span class="text-sky-500">Frequently</span> Asked Questions </h1>
+      <div class="collapse collapse-arrow bg-[#F8F8F8] border border-base-300 mb-4">
+  <input type="radio" name="my-accordion-2" checked="checked" />
+  <div class="collapse-title font-semibold">1. What is the difference between var , let and const?</div>
+  <div class="collapse-content text-sm">var function-scope ও re-declare করা যায়, let block-scope এবং re-declare করা যায় না, const block-scope এবং value change করা যায় না।</div>
+</div>
+<div class="collapse collapse-arrow bg-[#F8F8F8] border border-base-300 mb-4">
+  <input type="radio" name="my-accordion-2" />
+  <div class="collapse-title font-semibold">What is the difference between map() ,forEach() and filter()?</div>
+  <div class="collapse-content text-sm">map() নতুন array return করে, forEach() কিছু return করে না শুধু iteration করে, filter() শর্ত মিলে এমন elements দিয়ে নতুন array বানায়।</div>
+</div>
+<div class="collapse collapse-arrow bg-[#F8F8F8] border border-base-300 mb-4">
+  <input type="radio" name="my-accordion-2" />
+  <div class="collapse-title font-semibold">What are arrow functions, and how are they different from regular function?</div>
+  <div class="collapse-content text-sm">Arrow functions short syntax, no own this, and can't be used as constructors, unlike regular functions।</div>
+</div>
+<div class="collapse collapse-arrow bg-[#F8F8F8] border border-base-300 mb-4">
+  <input type="radio" name="my-accordion-2" />
+  <div class="collapse-title font-semibold">How do javaScript Promise work?</div>
+  <div class="collapse-content text-sm">A JavaScript Promise represents an asynchronous operation that can be pending, fulfilled, or rejected, and allows handling the result or error when ready.</div>
+</div>
+<div class="collapse collapse-arrow bg-[#F8F8F8] border border-base-300 mb-4">
+  <input type="radio" name="my-accordion-2" />
+  <div class="collapse-title font-semibold">How does closure work in JavaScript?</div>
+  <div class="collapse-content text-sm">A closure is a function that remembers and can access variables from its outer scope even after the outer function has finished execution.</div>
+</div>
+   </section>
+
+
+   <!-- footer part -->
+    <section class="mt-18 flex justify-between pr-18">
+        <div>
+            <div class="px-18 flex">
+            <h1 class="font-bold text-xl">English</h1>
+                <img class="w-[30px] " src="./assets/logo.png" alt="">
+                <h1 class="font-regular pt-1 font-semibold">জানালা </h1>
+        </div>
+        <h1 class="px-18 font-semibold">ইংরেজি শিখুন সহজে</h1>
+        <h2 class="px-18 font-semibold">Providing ED-Tech Applications since 2025</h2>
+        </div>
+
+        <div>
+            <p class="pb-4 text-gray-700">FOLLOW US</p>
+            <div class="flex gap-6">
+                <img src="assets/fb-thumb.png" alt="" srcset="">
+                <img src="assets/youtube-thumb.png" alt="" srcset="">
+                <img src="assets/instagram-thumb.png" alt="" srcset="">
+            </div>
+        </div>
+        
+    </section>
+ 
+    
+    <!-- js script add -->
+     <script src="./script/index.js"></script>
+</body>
+</html>
