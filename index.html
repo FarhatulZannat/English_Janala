@@ -9,11 +9,25 @@
     <!-- daisy ui add -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- 
+cdn of font awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<!-- css style -->
+ <style>
+  html{
+    scroll-behavior: smooth;
+  }
 
+  .active{
+        background-color:rgb(81, 10, 173);
+         color: white
+    }
+ </style>
+ </head>
 <body>
     <header>
-        <nav class=" bg-[#C6BDBD50] flex justify-between border-b-2 py-6 border-[#17171720] px-10">
+        <nav id="nav" class="hidden bg-[#C6BDBD50]  backdrop-blur-3xl fixed top-0 left-0 w-full z-50 flex justify-between border-b-2 py-6 border-[#17171720] px-10">
             <div class="flex  ">
                 <h1 class="font-semibold text-xl">English</h1>
                 <img class="w-[30px] " src="./assets/logo.png" alt="">
@@ -21,23 +35,26 @@
             </div>
 
             <div>
-                <button id="faq" class="btn btn-outline btn-primary" ><img src="assets/fa-circle-question.png" alt="" srcset="">FAQ</button>
-                <button onclick="loadAllLevels()" class="btn btn-outline btn-primary"><img src="assets/fa-book-open.png" alt="" srcset="">Learn</button>
-                <button class="btn btn-outline btn-primary"><img  src="assets/fa-arrow-right-from-bracket.png" alt="" srcset="">Logout</button>
+                <button onclick="location.href='#faq'" class="btn btn-outline btn-primary" ><i class="fa-solid fa-circle-question"></i>FAQ</button>
+                <button onclick="location.href='#learn' ; loadAllLevels()" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Learn</button>
+                <button class="btn btn-outline btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button>
                 
             </div>
         </nav>
 
-        <section class="flex">
+        <section id="banner" class="flex pt-20 ">
             <div class="pl-18">
                 <h1 class="font-bold text-4xl pt-38"><span class="text-sky-500">English</span> is Easy !!</h1>
             <p class="font-bold py-5">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br> আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
-            <input type="text" placeholder="Enter Your Name" class="input" /><br><br>
+            
+            
+            <input type="text" id="nameInput" placeholder="Enter Your Name" class="input" /><br><br>
 
             <label class="input validator ">
 
   <input
     type="password"
+    id="passwordInput"
     required
     placeholder="Enter Login Code (123456)"
     minlength="6"
@@ -45,11 +62,8 @@
     title="Must be  6 characters, "
   />
 </label>
-<p class="validator-hint hidden">
-  Must be more than 8 characters, including
-  <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
-</p>
-<br> <br><button class="btn btn-primary">Get Started</button>
+
+<br> <br><button id="getStarted" class="btn btn-primary">Get Started</button>
             </div>
 
             <div>
@@ -60,24 +74,53 @@
 
 
     <!-- main part -->
-<section>
-     <h1 class="text-center py-8 font-bold text-4xl pt-38"><span class="text-sky-500">Lets</span> Learn Vocabularies </h1>
-    <div id="button-container" class="flex justify-center gap-6 " >
-        <button>
-            <button class="btn btn-outline btn-primary"><img  src="assets/fa-book-open.png" alt="" srcset="">Lesson -${btn.level_no}</button>
-            <button class="btn btn-outline btn-primary"><img  src="assets/fa-book-open.png" alt="" srcset="">Lesson -${btn.level_no}</button>
-            <button class="btn btn-outline btn-primary"><img  src="assets/fa-book-open.png" alt="" srcset="">Lesson -${btn.level_no}</button>
-        </button>
-    </div>
+<div id="loader" class="hidden flex justify-center my-4">
+  <img src="./assets/loader.gif" class="w-12" alt="loading...">
+</div>
 
-     <div class="bg-[#F8F8F8] py-20 text-center mx-18 my-8">
+
+
+
+
+<section id="learn" class="hidden">
+     <h1 class="text-center py-8 font-bold text-4xl pt-38"><span class="text-sky-500">Lets</span> Learn Vocabularies </h1>
+    <div id="button-container" class="flex justify-center gap-6 mb-10" ></div>
+
+      <div id="lesson-cards"  class="hidden grid grid-cols-3 gap-6 mx-18 bg-[#C6BDBD50] px-4 py-4 "></div>
+       
+
+     <div id="selectOneLesson" class="bg-[#F8F8F8] py-20 text-center mx-18 my-8 ">
             <h6 class="font-thin">আপনি এখনো কোন Lesson Select করেন নি</h6>
             <h1 class="font-bold">একটি Lesson Select করুন।</h1>
         </div>
+
+        
+         
+   </div>
+        
 </section>
 
 
-   <section class="px-18 ">
+      <dialog id="word-details" class="modal">
+  <div class="modal-box">
+    <div id="details-container"></div>
+    <!-- <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p> -->
+    <div class="modal-action   justify-start">         <!--justify start dia bame ansi-->
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn bg-blue-800 text-white content-start">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
+ 
+
+
+   <section id="faq" class="px-18  hidden ">
     <h1 class="text-center py-8 font-bold text-4xl pt-38"><span class="text-sky-500">Frequently</span> Asked Questions </h1>
       <div class="collapse collapse-arrow bg-[#F8F8F8] border border-base-300 mb-4">
   <input type="radio" name="my-accordion-2" checked="checked" />
@@ -108,7 +151,7 @@
 
 
    <!-- footer part -->
-    <section class="mt-18 flex justify-between pr-18">
+    <section class="mt-38 flex justify-between pr-18">
         <div>
             <div class="px-18 flex">
             <h1 class="font-bold text-xl">English</h1>
@@ -125,6 +168,7 @@
                 <img src="assets/fb-thumb.png" alt="" srcset="">
                 <img src="assets/youtube-thumb.png" alt="" srcset="">
                 <img src="assets/instagram-thumb.png" alt="" srcset="">
+                <img src="assets/github-thumb.png" alt="" srcset="">
             </div>
         </div>
         
