@@ -1,28 +1,54 @@
-// click event get start er
+// click event get-start er
 document.getElementById('getStarted').addEventListener('click', function() {
     const name = document.getElementById('nameInput').value.trim();
     const password = document.getElementById('passwordInput').value.trim();
 
-    if(name === "" || password === "") {
-        alert("Both Name and Password must be filled!");
+    if (name === "" || password === "") {
+        // alert("Both Name and Password must be filled!");
+        Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Both Name and Password must be filled!'
+    });
         return;
     }
 
-   
-    if(password !== "123456") {
-        alert("Password is incorrect!");
+    if (password !== "123456") {
+        // alert("Password is incorrect!");
+         Swal.fire({
+        icon: 'error',
+        title: 'Wrong Password',
+        text: 'Please enter the correct login code'
+    });
         return;
     }
 
-   
+    // alert("Password is correct!");
+    Swal.fire({
+    icon: 'success',
+    title: 'Welcome!',
+    text: 'Password is correct!',
+    timer: 1500,
+    showConfirmButton: false             //'OK'  wala wkta btn thake j sheta r show hobe na false likle
+});
+    
     document.getElementById('learn').classList.remove('hidden');
     document.getElementById('faq').classList.remove('hidden');
     document.getElementById('nav').classList.remove('hidden'); 
     document.getElementById('banner').classList.add('hidden'); 
 
       // ekhn learn btn load hobe
-    loadAllLevels();
+    // loadAllLevels();
 });
+
+const showspinner = () => {
+   document.getElementById('spinner').classList.remove('hidden');
+   document.getElementById('lesson-cards').classList.add('hidden');
+}
+const hidespinner = () => {
+   document.getElementById('spinner').classList.add('hidden');
+   document.getElementById('lesson-cards').classList.remove('hidden');
+}
 
 
 
@@ -64,7 +90,7 @@ function removeActiveClass(){
   const activebtns = document.getElementsByClassName('category');//category ekta class name disi 19no line e iccha motw.jate ei name ta dhore shob btn k dhorte pari
 
   for(let btn of activebtns){
-    btn.classList.remove('active'); //ekhne oi active class ta k remmove kortesi jeta css dia html e create korsilm  
+    btn.classList.remove('active'); //ekhne oi active class ta k remmove kortesi jeta css dia html e create korsilm  .87 line e jabo ebr.
   }
 }
 
@@ -75,14 +101,17 @@ function removeActiveClass(){
 
 function loadLessons( id){
 
-  
-
   removeActiveClass();   // 1st e remove hobe active namer class ta
   document.getElementById(`btn-${id}`).classList.add('active'); // tar por 19 no line e id disi (`btn-${id}`) eta dia ekhne call kore oi btn ta kei just active kortesi
 
   
     // empty msg ta shore jabe btn click korle
   document.getElementById('selectOneLesson').style.display='none';
+
+
+
+  // spinner ekhn theke dile show hobe
+       showspinner();
 
 
   //extra div ta hidden korar por loaad hole abr show korbo
@@ -101,12 +130,12 @@ function loadLessons( id){
 
 function displayLessons(cards){
 
-
-
     const lessonCardContainer = document.getElementById('lesson-cards')
     lessonCardContainer.innerHTML = ''
 
     if(cards.length===0){
+
+      showspinner();  
       lessonCardContainer.innerHTML =`
      <section class="col-span-full flex flex-col justify-center py-20 mx-18 text-center items-center">
   <img class ="mx-auto block" src="./assets/alert-error.png" alt="">
@@ -119,6 +148,7 @@ function displayLessons(cards){
     }
     
      for(let card of cards){
+       
         const cardsDiv = document.createElement('div')
 
       // null hole jana nai dekhabe
@@ -135,15 +165,25 @@ function displayLessons(cards){
 
     <div class=" flex justify-center gap-30">
       <button onclick="loadWordDetails('${card.id}')" class="btn w-[8px] h-[26px]"><i class="fa-solid fa-circle-info"></i></button>
-      <button class="btn w-[8px] h-[26px]"><i class="fa-solid fa-circle-play"></i></button>
+      <button onclick="pronounceWord('${card.word}')" class="btn w-[8px] h-[26px]"><i class="fa-solid fa-circle-play"></i></button>
     </div>
   </div>
   </div>        
         
 `
 lessonCardContainer.append(cardsDiv);
+
      }
+      hidespinner();
 }
+
+
+//sound pronunction
+ function pronounceWord(word) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US'; // English
+      window.speechSynthesis.speak(utterance);
+    }
 
 
 

@@ -13,6 +13,13 @@
 cdn of font awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<!-- bangla font -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- SweetAlert2 cdn -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- css style -->
  <style>
   html{
@@ -23,29 +30,35 @@ cdn of font awesome -->
         background-color:rgb(81, 10, 173);
          color: white
     }
+
+   .hind-siliguri-medium {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
  </style>
  </head>
 <body>
     <header>
-        <nav id="nav" class="hidden bg-[#C6BDBD50]  backdrop-blur-3xl fixed top-0 left-0 w-full z-50 flex justify-between border-b-2 py-6 border-[#17171720] px-10">
+        <nav id="nav" class="hidden hind-siliguri-medium bg-[#C6BDBD50]  backdrop-blur-3xl fixed top-0 left-0 w-full z-50 flex justify-between border-b-2 py-6 border-[#17171720] px-10">
             <div class="flex  ">
                 <h1 class="font-semibold text-xl">English</h1>
                 <img class="w-[30px] " src="./assets/logo.png" alt="">
                 <h1 class="font-regular pt-1">জানালা </h1>
             </div>
 
-            <div>
+            <div class="gap-3">
                 <button onclick="location.href='#faq'" class="btn btn-outline btn-primary" ><i class="fa-solid fa-circle-question"></i>FAQ</button>
-                <button onclick="location.href='#learn' ; loadAllLevels()" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Learn</button>
+                <button onclick="location.href='#learn' " class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Learn</button>
                 <button class="btn btn-outline btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button>
                 
             </div>
         </nav>
 
         <section id="banner" class="flex pt-20 ">
-            <div class="pl-18">
+            <div class="pl-18 hind-siliguri-medium">
                 <h1 class="font-bold text-4xl pt-38"><span class="text-sky-500">English</span> is Easy !!</h1>
-            <p class="font-bold py-5">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br> আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+            <p class="font-medium py-5 ">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br> আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
             
             
             <input type="text" id="nameInput" placeholder="Enter Your Name" class="input" /><br><br>
@@ -82,14 +95,28 @@ cdn of font awesome -->
 
 
 
-<section id="learn" class="hidden">
+<section id="learn" class="hidden ">
      <h1 class="text-center py-8 font-bold text-4xl pt-38"><span class="text-sky-500">Lets</span> Learn Vocabularies </h1>
     <div id="button-container" class="flex justify-center gap-6 mb-10" ></div>
 
-      <div id="lesson-cards"  class="hidden grid grid-cols-3 gap-6 mx-18 bg-[#C6BDBD50] px-4 py-4 "></div>
+
+
+    <div id="spinner" class="hidden flex justify-center items-center m-[20px] p-[20px]">
+      <span class="loading loading-spinner text-primary"></span>
+<span class="loading loading-spinner drop-shadow-lg text-secondary"></span>
+<span class="loading loading-spinner text-accent"></span>
+<span class="loading loading-spinner text-neutral"></span>
+<span class="loading loading-spinner text-info"></span>
+<span class="loading loading-spinner text-success"></span>
+<span class="loading loading-spinner text-warning"></span>
+<span class="loading loading-spinner text-error"></span>
+    </div>
+
+
+      <div id="lesson-cards"  class="hidden grid grid-cols-3 gap-6 mx-18 bg-[#C6BDBD50] px-4 py-4 hind-siliguri-medium"></div>
        
 
-     <div id="selectOneLesson" class="bg-[#F8F8F8] py-20 text-center mx-18 my-8 ">
+     <div id="selectOneLesson" class="hind-siliguri-medium bg-[#F8F8F8] py-20 text-center mx-18 my-8 ">
             <h6 class="font-thin">আপনি এখনো কোন Lesson Select করেন নি</h6>
             <h1 class="font-bold">একটি Lesson Select করুন।</h1>
         </div>
@@ -103,7 +130,7 @@ cdn of font awesome -->
 
       <dialog id="word-details" class="modal">
   <div class="modal-box">
-    <div id="details-container"></div>
+    <div id="details-container" class="hind-siliguri-medium"></div>
     <!-- <h3 class="text-lg font-bold">Hello!</h3>
     <p class="py-4">Press ESC key or click the button below to close</p> -->
     <div class="modal-action   justify-start">         <!--justify start dia bame ansi-->
@@ -120,7 +147,7 @@ cdn of font awesome -->
  
 
 
-   <section id="faq" class="px-18  hidden ">
+   <section id="faq" class="px-18  hidden hind-siliguri-medium">
     <h1 class="text-center py-8 font-bold text-4xl pt-38"><span class="text-sky-500">Frequently</span> Asked Questions </h1>
       <div class="collapse collapse-arrow bg-[#F8F8F8] border border-base-300 mb-4">
   <input type="radio" name="my-accordion-2" checked="checked" />
@@ -151,15 +178,15 @@ cdn of font awesome -->
 
 
    <!-- footer part -->
-    <section class="mt-38 flex justify-between pr-18">
+    <section class="hind-siliguri-medium mt-38 flex justify-between pr-18">
         <div>
             <div class="px-18 flex">
             <h1 class="font-bold text-xl">English</h1>
                 <img class="w-[30px] " src="./assets/logo.png" alt="">
-                <h1 class="font-regular pt-1 font-semibold">জানালা </h1>
+                <h1 class="font-medium pt-1 font-semibold">জানালা </h1>
         </div>
-        <h1 class="px-18 font-semibold">ইংরেজি শিখুন সহজে</h1>
-        <h2 class="px-18 font-semibold">Providing ED-Tech Applications since 2025</h2>
+        <h1 class="px-18 font-medium">ইংরেজি শিখুন সহজে</h1>
+        <h2 class="px-18 font-medium">Providing ED-Tech Applications since 2025</h2>
         </div>
 
         <div>
